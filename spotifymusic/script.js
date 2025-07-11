@@ -4,7 +4,7 @@ let songs;
 let currfolder;
 async function getsongs(folder) {
     currfolder = folder;
-    let a = await fetch(`http://127.0.0.1:3000/spotifymusic/${folder}/`)
+    let a = await fetch(`${folder}/`)
     let response = await a.text()
     // console.log(response)
     // 
@@ -17,7 +17,7 @@ async function getsongs(folder) {
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
         if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split(`/${folder}/`)[1])
+            songs.push(element.href.split(`${folder}/`)[1])
 
         }
     }
@@ -26,14 +26,14 @@ async function getsongs(folder) {
     songUL.innerHTML = ""
     for (const song of songs) {
         songUL.innerHTML = songUL.innerHTML + `<li>
-               <img class="invert" src="/spotifymusic/img/music.svg" alt="">
+               <img class="invert" src="img/music.svg" alt="">
                             <div class="info">
                                <div>${song.replaceAll("%20", "")}</div>
                             </div>
                             <!--  -->
                             <div class="playnow"> 
                             <span>Play Now</span>
-                             <img class="invert" src="/spotifymusic/img/playbutton.svg" alt="">
+                             <img class="invert" src="img/playbutton.svg" alt="">
                             </div>  </li>`;
 
     }
@@ -52,12 +52,12 @@ async function getsongs(folder) {
 
 }
 const playmusic = (track, pause = false) => {
-    // let audio = new Audio("/spotifymusic/mp3/"+track)
-    currentsong.src = `/spotifymusic/${currfolder}/` + track;
+    // let audio = new Audio("mp3/"+track)
+    currentsong.src = `${currfolder}/` + track;
     // audio.play() 
     if (!pause) {
         currentsong.play()
-        play.src = "/spotifymusic/img/pause.svg"
+        play.src = "img/pause.svg"
     }
     //   
     document.querySelector(".songinfo").innerHTML = decodeURI(track);
@@ -78,7 +78,7 @@ function secondsToMinutesSeconds(totalSeconds) {
     return `${formattedMinutes}:${formattedSeconds}`;
 }
 async function displayalbums() {
-    let a = await fetch(`http://127.0.0.1:3000/spotifymusic/mp3/`)
+    let a = await fetch(`mp3/`)
     let response = await a.text()
 
     let div = document.createElement("div")
@@ -96,7 +96,7 @@ async function displayalbums() {
             // Get the metadata of the folder
             // console.log(e.href.split("/").slice(-2)[0])
             let folder = e.href.split("/").slice(-2)[0];
-            let a = await fetch(`http://127.0.0.1:3000/spotifymusic/mp3/${folder}/info.json`)
+            let a = await fetch(`mp3/${folder}/info.json`)
             let response = await a.json();
             console.log(response)
             cardconainer.innerHTML = cardconainer.innerHTML + `<div data-folder ="${folder}" class="card">
@@ -110,7 +110,7 @@ async function displayalbums() {
                                 </svg>
                             </div>
                         </div>
-                        <img src="/spotifymusic/mp3/${folder}/cover.jpg" alt="">
+                        <img src="mp3/${folder}/cover.jpg" alt="">
                         <h2>${response.title}</h2>
                         <p>${response.description}</p>
                     </div>`
@@ -144,11 +144,11 @@ async function main() {
     play.addEventListener("click", () => {
         if (currentsong.paused) {
             currentsong.play();
-            play.src = "/spotifymusic/img/pause.svg"
+            play.src = "img/pause.svg"
         }
         else {
             currentsong.pause()
-            play.src = "/spotifymusic/img/playbutton.svg"
+            play.src = "img/playbutton.svg"
         }
     })
     // listen for time-update function 
@@ -190,7 +190,7 @@ async function main() {
     // Add an event listener to next 
     next.addEventListener("click", () => {
         currentsong.pause();
-        play.src = "/spotifymusic/img/playbutton.svg"
+        play.src = "img/playbutton.svg"   
         console.log("next clicked ")
         let index = songs.indexOf(currentsong.src.split("/").slice(-1)[0])
         console.log(songs, index)
