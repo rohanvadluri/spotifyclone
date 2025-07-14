@@ -19,12 +19,9 @@ body {
     width: 25vw;
     padding: 0px;
 }
-
 .right {
     width: 75vw;
 }
-
-.home {}
 
 .home ul li {
     width: 14px;
@@ -82,18 +79,23 @@ body {
     background-color: rgb(58, 56, 56);
     border-radius: 5px;
 }
-
 .header>* {
     padding: 8px;
 }
 
 .spotifyplaylists {
     padding: 16px;
-
 }
 
 .spotifyplaylists h1 {
     padding: 16px;
+
+}
+
+.spotifyplaylists h1 span a {
+    font-size: 9px;
+    color: aliceblue;
+    text-decoration: none;
 
 }
 
@@ -334,9 +336,10 @@ body {
     padding: 10px 0;
 
 }
+
 .card:hover {
-  transform: translateY(-10px);
-  /* box-shadow: 0 8px 20px rgba(6, 5, 9, 0.3); */
+    transform: translateY(-10px);
+    /* box-shadow: 0 8px 20px rgba(6, 5, 9, 0.3); */
 }
 
 @media (max-width: 1300px) {
@@ -351,9 +354,8 @@ body {
         position: fixed;
         top: 0;
 
-
     }
-
+    
     .timevol {
         display: flex;
         flex-direction: column;
@@ -408,7 +410,7 @@ body {
     /* .cardcontainer {
         max-height: 40vh;
     } */
-     .cardcontainer{
+    .cardcontainer {
         max-height: unset;
         overflow-y: unset;
         margin-bottom: 40vh;
@@ -425,32 +427,35 @@ body {
 @media (max-width: 400px) {
     .card {
         width: 100%;
-       
+
     }
-    /* .buttons>*{
-        margin: 0 6px;
-    } */
-    .header>*{
+
+    .header>* {
         padding: 3px;
     }
-    .cardcontainer{
+
+    .cardcontainer {
         max-height: unset;
         overflow-y: unset;
     }
-     .header{
+
+    .header {
         padding: 3px;
     }
-    .spotifyplaylists h1{
+
+    .spotifyplaylists h1 {
         padding: 4px;
-        
+
     }
-    .library{
+
+    .library {
         height: 85vh;
     }
-    .left{
+
+    .left {
         /* position: fixed;
         top: 0; */
         width: 100vw;
     }
-   
+  
 }
